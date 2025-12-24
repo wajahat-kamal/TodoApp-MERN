@@ -43,7 +43,38 @@ export const createTodo = async (req, res) => {
   }
 };
 
-export const updateTodo = async (req, res) => {};
+import Todo from "../models/todoModel.js";
+
+export const updateTodo = async (req, res) => {
+  try {
+    const { title, description, completed } = req.body;
+
+    const updatedTodo = await Todo.findByIdAndUpdate(
+      req.params.id,
+      { title, description, completed },
+      { new: true } // return the updated document
+    );
+
+    if (!updatedTodo) {
+      return res.status(404).json({
+        success: false,
+        message: "Todo not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Todo updated successfully",
+      todo: updatedTodo,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server Problem in updating todo",
+      error: error.message,
+    });
+  }
+};
 
 export const deleteTodo = async (req, res) => {
   try {
