@@ -1,10 +1,9 @@
-import Todo from "../model/TodoSchema";
+import Todo from "../model/TodoSchema.js";
 
-export const getTodo = (req, res) => {
+export const getTodos = (req, res) => {
  
 }
 
-import Todo from "../models/todoModel.js";
 
 export const createTodo = async (req, res) => {
   try {

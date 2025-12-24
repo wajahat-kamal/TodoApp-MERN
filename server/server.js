@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import connectDB from './lib/DB.js';
+import TodoRoute from './routes/TodoRoute.js'
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 connectDB();
 
 // Your routes here
+app.use("/api/todos", TodoRoute);
 app.get('/', (req, res) => res.send('API is running...'));
 
 app.listen(process.env.PORT, () =>
