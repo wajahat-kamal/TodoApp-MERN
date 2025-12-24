@@ -51,7 +51,9 @@ export default function App() {
 
         {/* Main */}
         <main className="flex-1 px-4 md:px-16 py-6 overflow-y-auto">
-          <TodoItem todos={todos} />
+          {todos.map((todo) => (
+            <TodoItem todo={todo} />
+          ))}
         </main>
 
         {/* Footer */}
