@@ -1,22 +1,36 @@
 import { Plus } from "lucide-react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
+import axios from "axios";
 
 export default function App() {
+  const [todos, setTodos] = useState([]);
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchTodos = async () => {
-    
-  }
+    try {
+      const { data } = await axios.get(API_URL);
+
+      if (data.success) {
+        setTodos(data.todos);
+      }
+    } catch (error) {
+      console.error("Error fetching todos:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
   return (
     <div
       className="relative min-h-screen w-full bg-cover bg-center"
       style={{ backgroundImage: "url('/bg-image.jpeg')" }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/60" />
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen text-white">
         
         {/* Navbar */}
@@ -30,17 +44,14 @@ export default function App() {
             </h1>
           </div>
 
-          <button className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 transition flex items-center justify-center">
+          <button className="p-3 rounded-full bg-blue-600 hover:bg-blue-700 transition">
             <Plus size={22} />
           </button>
         </header>
 
         {/* Main */}
         <main className="flex-1 px-4 md:px-16 py-6 overflow-y-auto">
-          
-          {/* Todo Item */}
-          <TodoItem/>
-
+          <TodoItem todos={todos} />
         </main>
 
         {/* Footer */}
@@ -51,28 +62,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
-{/* Hero Section */}
-        {/* <main className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            Organize Your Daily Tasks
-          </h2>
-          <p className="text-gray-300 max-w-xl mb-8">
-            A clean, minimal and powerful todo app to help you stay productive
-            and focused every day.
-          </p>
-
-          <div className="w-full max-w-xl flex flex-col sm:flex-row gap-3">
-            <input
-              type="text"
-              placeholder="What do you want to accomplish today?"
-              className="flex-1 px-5 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-            <button className="px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-700 transition font-semibold">
-              Add Todo
-            </button>
-          </div>
-        </main> */}
