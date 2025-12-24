@@ -1,0 +1,23 @@
+import express from "express";
+import {
+  getTodos,
+  createTodo,
+  updateTodo,
+  deleteTodo,
+} from "../controllers/todoController.js";
+
+const router = express.Router();
+
+// GET all todos
+router.get("/", getTodos);
+
+// POST new todo
+router.post("/", createTodo);
+
+// PUT toggle completed
+router.put("/:id", updateTodo);
+
+// DELETE todo
+router.delete("/:id", deleteTodo);
+
+export default router;
