@@ -1,7 +1,13 @@
 import { Plus } from "lucide-react";
 import React from "react";
+import TodoItem from "./TodoItem";
 
 export default function App() {
+
+  const fetchTodos = async () => {
+    
+  }
+
   return (
     <div
       className="relative min-h-screen w-full bg-cover bg-center"
@@ -33,22 +39,7 @@ export default function App() {
         <main className="flex-1 px-4 md:px-16 py-6 overflow-y-auto">
           
           {/* Todo Item */}
-          <div className="w-full flex items-center justify-between gap-4 border border-white/30 rounded-2xl p-4 mb-4 backdrop-blur-sm bg-white/5">
-            
-            <div className="text-left">
-              <h2 className="text-lg font-semibold">
-                Cook for dinner
-              </h2>
-              <p className="text-sm text-gray-300">
-                Prepare a healthy meal in the evening
-              </p>
-            </div>
-
-            <input
-              type="checkbox"
-              className="w-5 h-5 accent-blue-600 cursor-pointer"
-            />
-          </div>
+          <TodoItem/>
 
         </main>
 
