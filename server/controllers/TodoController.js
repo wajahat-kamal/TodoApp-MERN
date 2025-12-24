@@ -1,8 +1,21 @@
-import Todo from "../model/TodoSchema.js";
+import Todo from "../models/todoModel.js";
 
-export const getTodos = (req, res) => {
- 
-}
+export const getTodos = async (req, res) => {
+  try {
+    const todos = await Todo.find().sort({ _id: -1 });
+    res.status(200).json({
+      success: true,
+      todos,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Server Problem in fetching Todos",
+      error: error.message,
+    });
+  }
+};
+
 
 
 export const createTodo = async (req, res) => {
