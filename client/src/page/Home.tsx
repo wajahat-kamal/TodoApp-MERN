@@ -50,7 +50,7 @@ export default function Home() {
         </header>
 
         {/* Main */}
-        <main className="flex-1 px-4 md:px-16 py-6 overflow-y-auto">
+        <main className="flex-1 px-4 md:px-16 py-6 overflow-y-auto h-130">
           {todos.map((todo) => (
             <TodoItem todo={todo} />
           ))}
