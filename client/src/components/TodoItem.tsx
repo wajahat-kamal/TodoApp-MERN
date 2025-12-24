@@ -1,5 +1,7 @@
+import axios from "axios";
 import { Pen, Trash2 } from "lucide-react";
 import React from "react";
+import toast from "react-hot-toast";
 
 interface Todo {
   _id: string;
@@ -12,9 +14,26 @@ interface Todo {
 
 interface TodoItemProps {
   todo: Todo;
+  // onDelete?: (_id: string) => void; // optional callback to update parent
 }
 
 function TodoItem({ todo }: TodoItemProps) {
+  const API_URL = import.meta.env.VITE_API_URL;
+
+  const deleteTodo = async () => {
+    try {
+      const { data } = await axios.post(`${API_URL}/delete`, { id: todo._id });
+      if (data.success) {
+        toast.success(data.message);
+        // if (onDelete) onDelete(todo._id);
+      }
+    } catch (error: any) {
+      toast.error(
+        error.response?.data?.message || error.message || "Something went wrong"
+      );
+    }
+  };
+
   return (
     <div
       className="group w-full flex items-center justify-between gap-4 
@@ -24,10 +43,12 @@ function TodoItem({ todo }: TodoItemProps) {
     >
       {/* Text */}
       <div className="flex-1 text-left">
-        <h2 className="text-lg font-semibold">{todo.title}</h2>
+        <h2 className="text-lg font-semibold ">{todo.title}</h2>
 
         {todo.description && (
-          <p className="text-sm text-gray-300 mt-1 line-clamp-2">{todo.description}</p>
+          <p className="text-sm text-gray-300 mt-1 line-clamp-2">
+            {todo.description}
+          </p>
         )}
       </div>
 
@@ -41,6 +62,7 @@ function TodoItem({ todo }: TodoItemProps) {
         </button>
 
         <button
+          onClick={deleteTodo}
           className="p-2 rounded-full hover:bg-red-500/20 text-red-400 transition"
           aria-label="Delete todo"
         >

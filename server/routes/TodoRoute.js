@@ -18,6 +18,6 @@ router.post("/", createTodo);
 router.put("/:id", updateTodo);
 
 // DELETE todo
-router.delete("/:id", deleteTodo);
+router.post("/delete", deleteTodo);
 
 export default router;
