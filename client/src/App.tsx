@@ -1,6 +1,6 @@
 import { Plus } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import TodoItem from "./TodoItem";
+import TodoItem from "./components/TodoItem";
 import axios from "axios";
 
 export default function App() {
