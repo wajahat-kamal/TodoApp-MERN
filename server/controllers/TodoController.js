@@ -43,8 +43,6 @@ export const createTodo = async (req, res) => {
   }
 };
 
-import Todo from "../models/todoModel.js";
-
 export const updateTodo = async (req, res) => {
   try {
     const { title, description, completed } = req.body;
