@@ -1,3 +1,4 @@
+import { Plus } from "lucide-react";
 import React from "react";
 
 export default function App() {
@@ -26,8 +27,8 @@ export default function App() {
             </h1>
           </div>
 
-          <button className="hidden sm:block px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition font-medium">
-            Add Task
+          <button className="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 transition font-medium flex flex-row justify-center items-center">
+           <Plus size={20}/>
           </button>
         </header>
 
@@ -53,10 +54,14 @@ export default function App() {
           </div>
         </main> */}
 
+        <main className="">
+
+        </main>
+
         {/* Footer */}
-        {/* <footer className="text-center py-4 text-sm text-gray-400">
+        <footer className="text-center w-screen py-4 text-sm text-gray-400 fixed bottom-1 right-0">
           © 2025 TodoApp — Stay focused. Get things done.
-        </footer> */}
+        </footer>
       </div>
     </div>
   );
